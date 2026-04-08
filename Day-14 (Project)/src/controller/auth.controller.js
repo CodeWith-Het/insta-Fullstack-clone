@@ -18,7 +18,8 @@ async function registerControll(req, res) {
     return res.status(409).json({ message });
   }
 
-  const hash = await bcrypt.hash(password, 10);
+  // using bcrypt 
+  const hash = await bcrypt.hash(password, 12);
 
   const user = await userModel.create({
     username,

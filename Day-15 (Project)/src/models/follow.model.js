@@ -14,3 +14,6 @@ const followModelSchema = mongoose.Schema({
 },
     {timestamps: true}
 )
+
+const followModel = mongoose.model("follow",followModelSchema)
+module.exports = followModel

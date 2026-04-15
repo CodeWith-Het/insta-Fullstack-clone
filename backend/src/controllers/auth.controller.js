@@ -91,7 +91,19 @@ async function loginController(req, res) {
   });
 }
 
+async function getLoginDataController(req, res) {
+  const userId = req.user.id
+
+  const user = await userModel.findById(userId)
+
+  res.status(200).json({
+    message: "user login data here",
+    user
+  })
+}
+
 module.exports = {
   registerControll,
   loginController,
+  getLoginDataController
 };

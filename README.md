@@ -1,4 +1,4 @@
-# 🫡 Day 12 to Day 16 INSTA-CLONE PROJECT ONLY BACKEND
+# 🫡 Day 12 to Day 16 INSTA-CLONE PROJECT BACKEND AND FRONTEND
 
 # 🚀 Node.js Authentication API
 

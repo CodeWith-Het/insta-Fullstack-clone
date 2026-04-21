@@ -23,15 +23,13 @@ async function postCreateController(req, res) {
       message: "Image file is required",
     });
     }
-    
-    const {username} = req.user
 
   const post = await postModel.create({
     caption: req.body.caption,
     imgFile: file.url,
-    username:username,
     user: req.user.id,
-  });
+    username:req.user.username
+  })
 
   res.status(201).json({
     message: "Post successfully created",
@@ -165,7 +163,8 @@ async function getFeedController(req,res) {
   try {
     const feed = await postModel
       .find({user:req.user.id}) // this using for find particular user image 
-      .populate("user") // find() method se perticular user ka post creation ka data mil jata hai
+      .populate("user","username profile_image") // find() method se perticular user ka post creation ka data mil jata hai
+      .sort({ createdAt: -1 })
 
   res.status(200).json({
     message: "Post Fetch Successfully",

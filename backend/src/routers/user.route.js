@@ -8,5 +8,10 @@ userRouter.post("/unfollow/:username", identifyUser, userController.unfollowUser
 userRouter.post("/followrequest/send/:username", identifyUser, userController.sendFollowRequestController)
 userRouter.put("/followrequest/accept/:username", identifyUser ,userController.acceptFollowRequestController)
 userRouter.put("/followrequest/reject/:username", identifyUser ,userController.rejectFollowRequestController)
+userRouter.get(
+  "/followrequest/pending",
+  identifyUser,
+  userController.getMyPendingRequestsController,
+);
 
 module.exports = userRouter

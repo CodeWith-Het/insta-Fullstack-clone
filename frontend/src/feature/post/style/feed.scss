@@ -56,7 +56,23 @@ main {
       font-size: 14px;
       margin: 0;
     }
+
+  .follow-btn {
+      margin-left: auto; 
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.2s;
+      background-color: #0095f6;
+      cursor: pointer;
+
   }
+
+
+}
 
   .post-image {
     width: 100%;

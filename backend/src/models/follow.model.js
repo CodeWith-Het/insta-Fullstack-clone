@@ -3,23 +3,23 @@ const mongoose = require("mongoose");
 const followModelSchema = new mongoose.Schema(
   {
     follower: {
-      type:String
+      type: String,
     },
     following: {
-      type:String
+      type: String,
     },
     followCount: {
       type: Number,
-      default:0
+      default: 0,
     },
     unFollowCount: {
       type: Number,
-      default:0
+      default: 0,
     },
     status: {
       type: String,
       default: "pending",
-      enum:["pending", "accepted", "rejected"]
+      enum: ["pending", "accepted", "rejected"],
     },
   },
   { timestamps: true },

@@ -1,13 +1,16 @@
 import AppRouter from "./AppRouter";
-import './feature/shared/style.scss'
+import "./feature/shared/style.scss";
 import { AuthProvider } from "./feature/auth/auth.context";
 import { PostContextProvider } from "./feature/post/post.context";
+import { TroggleFollowProvider } from "./feature/FollowUnfollow/toggleFollow.context";
 
 const App = () => {
   return (
     <AuthProvider>
       <PostContextProvider>
-        <AppRouter />
+        <TroggleFollowProvider>
+          <AppRouter />
+        </TroggleFollowProvider>
       </PostContextProvider>
     </AuthProvider>
   );

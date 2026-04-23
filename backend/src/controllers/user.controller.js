@@ -240,10 +240,34 @@ async function rejectFollowRequestController(req, res) {
   }
 }
 
+// user.controller.js mein add kar:
+
+async function getMyPendingRequestsController(req, res) {
+  try {
+    const myUsername = req.user.username;
+
+    // Database mein check karo kahan 'following' main hu aur status 'pending' hai
+    const pendingRequests = await followModel.find({
+      following: myUsername,
+      status: "pending"
+    });
+
+    res.status(200).json({
+      message: "Pending requests fetched",
+      requests: pendingRequests
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
+
+
 module.exports = {
   followUserController,
   unfollowUserController,
   sendFollowRequestController,
   acceptFollowRequestController,
   rejectFollowRequestController,
+  getMyPendingRequestsController
 };

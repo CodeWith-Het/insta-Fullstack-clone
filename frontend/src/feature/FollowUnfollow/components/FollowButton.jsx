@@ -1,8 +1,12 @@
 import React, { useState } from "react";
-import { useFollow } from './../hooks/useFollow'
-import "../styles/followButton.scss"
+import { useFollow } from "../hooks/useFollow";
+import "../styles/followButton.scss";
 
 const FollowButton = ({ username, initialStatus = "none" }) => {
+
+  const myUsername =
+    JSON.parse(localStorage.getItem("user"))?.username || "CodeWith-Het"; // Isko apne actual state se replace karna
+
   // Hook se functions nikale
   const { handleFollow, handleUnFollow, handleSendFollowRequest, loading } =
     useFollow();
@@ -10,8 +14,12 @@ const FollowButton = ({ username, initialStatus = "none" }) => {
   // State jo char (4) cheezein handle karegi: "none", "pending", "accepted", "rejected"
   const [status, setStatus] = useState(initialStatus);
 
+  // 2. CHECK: Kya main khud ki profile dekh raha hu?
+  const isMe = myUsername === username;
+
   const onToggle = async () => {
-    if (!username) return;
+    // Agar username nahi hai, ya fir user khud click kar raha hai, toh return kardo
+    if (!username || isMe) return;
 
     try {
       // SCENARIO 1: Agar pehle se Following ya Requested hai, toh click karne par Cancel/Unfollow hoga
@@ -21,7 +29,6 @@ const FollowButton = ({ username, initialStatus = "none" }) => {
       }
       // SCENARIO 2: Agar Follow karna hai ya pehle Reject ho chuka tha (wapas request bhejni hai)
       else if (status === "none" || status === "rejected") {
-        // YAHAN MAIN CHANGE HAI: Ab hum seedha Request bhej rahe hain!
         await handleSendFollowRequest(username);
         setStatus("pending"); // Button turant "Requested" ban jayega
       }
@@ -29,6 +36,20 @@ const FollowButton = ({ username, initialStatus = "none" }) => {
       console.error("Follow action failed:", error);
     }
   };
+
+  // 3. Agar ye "Main Khud" hu, toh seedha ek disabled button return kardo
+  // (Isse niche ka color change wala code chalega hi nahi)
+  if (isMe) {
+    return (
+      <button
+        className="follow-btn following"
+        disabled
+        style={{ opacity: 0.6, cursor: "not-allowed" }}
+      >
+        It's You
+      </button>
+    );
+  }
 
   // UI (Text aur Color) change karne ka logic
   let btnText = "Follow";
@@ -42,7 +63,7 @@ const FollowButton = ({ username, initialStatus = "none" }) => {
     btnClass = "following"; // Grey background ke liye
   } else if (status === "rejected") {
     btnText = "Rejected";
-    btnClass = "following"; // isko tu chahe toh red color ki nayi class de sakta hai
+    btnClass = "following";
   }
 
   return (

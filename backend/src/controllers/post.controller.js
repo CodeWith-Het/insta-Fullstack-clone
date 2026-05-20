@@ -122,7 +122,7 @@ async function toggleLikeController(req, res) {
       const updatedPost = await postModel.findByIdAndUpdate(
         postId,
         { $inc: { likeCounter: -1 } },
-        { new: true },
+        { returnDocument: "after" },
       );
 
       return res.status(200).json({

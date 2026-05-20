@@ -21,7 +21,7 @@ const CreatePost = () => {
 
    const onSubmit = async (e) => {
     e.preventDefault();
-    if (!file) return alert("Bhai, photo toh select kar le!");
+    if (!file) return alert("Please select a photo first.");
 
    
     const formData = new FormData();
@@ -31,13 +31,13 @@ const CreatePost = () => {
     const success = await handleCreatePost(formData);
 
     if (success) {
-      alert("Post successful ho gayi!");
+      alert("Post created Successfully");
       // Form saaf kar do
       setFile(null);
       setPreview(null);
       setCaption("");
     } else {
-      alert("Post create karne mein error aayi.");
+      alert("An error occurred during post creation.");
     }
   };
 

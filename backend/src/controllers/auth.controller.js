@@ -94,7 +94,6 @@ async function loginController(req, res) {
     user: {
       username: user.username,
       email: user.email,
-      password: user.password,
     },
     token: token,
   });

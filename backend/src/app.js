@@ -1,12 +1,12 @@
 const express = require("express")
 const cors = require("cors")
+const cookieParser = require("cookie-parser")
 
 // required routers
 const authRouter =   require("./routers/auth.route")
 const postRouter = require("./routers/post.route")
 const userRouter = require("./routers/user.route")
 
-const cookieParser = require("cookie-parser")
 const app = express();
 
 // middlewares fuctions
@@ -16,6 +16,7 @@ app.use(
     credentials: true,
   }),
 );
+
 app.use(express.json());
 app.use(cookieParser());
 

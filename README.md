@@ -44,8 +44,9 @@ Make sure you have Node.js and MongoDB installed on your machine.
 ### Installation
 
 1. Clone the repository:
-   ```bash
-   git clone [https://github.com/CodeWith-Het/your-repo-name.git](https://github.com/CodeWith-Het/your-repo-name.git)
+   ```bashgit
+   git clone https://github.com/CodeWith-Het/insta-Fullstack-clone.git
+
 
 2.Install Backend Dependencies:
 cd backend
